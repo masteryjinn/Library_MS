@@ -56,9 +56,10 @@ class MainWindow(QWidget):
 
         self.stack = QStackedWidget()
         self.add_tab("📚 Книги", BooksTab())
-        self.add_tab("👤 Читачі", ReadersTab())
-        self.add_tab("📅 Позичання", BorrowingsTab())
-        self.add_tab("📈 Аналітика", AnalyticsTab())
+        if CurrentUser().get_role() == "librarian":
+            self.add_tab("👤 Читачі", ReadersTab())
+            self.add_tab("📅 Позичання", BorrowingsTab())
+            self.add_tab("📈 Аналітика", AnalyticsTab())
 
         # === ВЕРХНЯ ПАНЕЛЬ ===
         header = QHBoxLayout()
