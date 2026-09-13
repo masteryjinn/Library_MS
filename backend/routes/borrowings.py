@@ -52,7 +52,8 @@ def get_borrowings(
     active_only: bool = False,
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=100),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    _user: dict = Depends(require_role("librarian"))
 ):
     """Отримання списку позичань із фільтрацією та пагінацією."""
     # Конкатенація імені та прізвища читача для зручного пошуку
